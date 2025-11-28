@@ -1,7 +1,10 @@
-import { Server, ShoppingCart, Shield, Wrench, Users, Globe } from "lucide-react";
+import { Server, ShoppingCart, Shield, Wrench, Users, Globe, ArrowRight } from "lucide-react";
 import { ServiceCard } from "@/components/ServiceCard";
 import { FloatingShape } from "@/components/FloatingShape";
-import openxpertLogo from "@/assets/openxpert-logo.jpg";
+import { Button } from "@/components/ui/button";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   const services = [
@@ -39,6 +42,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen gradient-bg relative overflow-hidden">
+      <Navigation />
+      
       {/* Floating decorative shapes */}
       <FloatingShape 
         className="top-20 left-10 w-96 h-96 bg-accent/30"
@@ -54,31 +59,34 @@ const Index = () => {
       />
       
       {/* Main content */}
-      <div className="relative z-10 container mx-auto px-6 py-20">
-        {/* Header with logo */}
-        <header className="text-center mb-24 animate-slide-in-up">
-          <div className="flex justify-center mb-8">
-            <div className="relative">
-              <img 
-                src={openxpertLogo} 
-                alt="OpenXpert Solutions - Enterprise IT Solutions Provider" 
-                className="h-24 w-auto object-contain"
-              />
-              {/* Subtle glow behind logo */}
-              <div className="absolute inset-0 blur-2xl opacity-30 bg-primary/20 -z-10 scale-110" />
-            </div>
-          </div>
-          
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 tracking-tight">
-            Enterprise Digital
-            <span className="block mt-2 bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">
-              Solutions
+      <div className="relative z-10 container mx-auto px-6 pt-32 pb-20">
+        {/* Hero Section */}
+        <header className="text-center mb-32 animate-slide-in-up">
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-foreground mb-8 tracking-tight leading-none">
+            Precision. Innovation.
+            <span className="block mt-3 bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">
+              Open Solutions.
             </span>
           </h1>
           
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Transforming businesses through innovative technology, security, and excellence
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-12">
+            Empowering businesses with secure, future-ready technology that drives growth and digital transformation.
           </p>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link to="/contact">
+              <Button size="lg" className="glass-card hover:glow-effect px-8 py-6 text-lg group">
+                Explore Services
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
+            <Link to="/contact">
+              <Button size="lg" variant="outline" className="glass-card hover:glow-effect px-8 py-6 text-lg">
+                Talk to an Expert
+              </Button>
+            </Link>
+          </div>
         </header>
 
         {/* Services grid */}
@@ -94,15 +102,30 @@ const Index = () => {
           ))}
         </div>
 
-        {/* Footer tagline */}
-        <footer className="mt-32 text-center animate-slide-in-up" style={{ animationDelay: "600ms" }}>
-          <div className="glass-card inline-block px-8 py-4 rounded-full">
-            <p className="text-sm text-muted-foreground font-medium">
-              Secure • Innovative • Sophisticated
+        {/* Trust Badges */}
+        <div className="mt-32 text-center animate-slide-in-up" style={{ animationDelay: "600ms" }}>
+          <div className="glass-card inline-block px-12 py-6 rounded-full">
+            <p className="text-sm text-muted-foreground font-medium flex items-center gap-6">
+              <span className="flex items-center gap-2">
+                <Shield className="w-4 h-4 text-primary" />
+                Secure
+              </span>
+              <span className="text-border">•</span>
+              <span className="flex items-center gap-2">
+                <Globe className="w-4 h-4 text-primary" />
+                Innovative
+              </span>
+              <span className="text-border">•</span>
+              <span className="flex items-center gap-2">
+                <Server className="w-4 h-4 text-primary" />
+                Trusted
+              </span>
             </p>
           </div>
-        </footer>
+        </div>
       </div>
+
+      <Footer />
     </div>
   );
 };
