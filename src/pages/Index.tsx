@@ -1,6 +1,7 @@
-import { Server, ShoppingCart, Shield, Wrench, Users, Globe, ArrowRight } from "lucide-react";
+import { Server, ShoppingCart, Shield, Wrench, Users, Globe, ArrowRight, Sparkles } from "lucide-react";
 import { ServiceCard } from "@/components/ServiceCard";
 import { FloatingShape } from "@/components/FloatingShape";
+import { ParticleField } from "@/components/ParticleField";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -12,37 +13,48 @@ const Index = () => {
       icon: Server,
       title: "ERP Systems",
       description: "Enterprise Resource Planning solutions tailored to streamline your business operations with cutting-edge technology.",
+      link: "/services/erp"
     },
     {
       icon: ShoppingCart,
       title: "Custom E-Commerce",
       description: "Bespoke e-commerce platforms designed to deliver exceptional user experiences and drive conversions.",
+      link: "/services/ecommerce"
     },
     {
       icon: Shield,
       title: "RMM Services",
       description: "Remote Monitoring and Management services ensuring your IT infrastructure operates at peak performance.",
+      link: "/services/rmm"
     },
     {
       icon: Wrench,
       title: "AMC Support",
       description: "Comprehensive Annual Maintenance Contracts providing reliable, ongoing technical support and system optimization.",
+      link: "/services/amc"
     },
     {
       icon: Users,
       title: "Community Projects",
       description: "Innovative technology initiatives that empower communities and create lasting social impact.",
+      link: "/services/community"
     },
     {
       icon: Globe,
       title: "Web Development",
       description: "Premium web solutions combining elegant design with powerful functionality for modern digital experiences.",
+      link: "/services/web"
     },
   ];
 
   return (
     <div className="min-h-screen gradient-bg relative overflow-hidden">
       <Navigation />
+      
+      {/* Particle field background */}
+      <div className="fixed inset-0 z-0">
+        <ParticleField />
+      </div>
       
       {/* Floating decorative shapes */}
       <FloatingShape 
@@ -58,13 +70,26 @@ const Index = () => {
         delay={4}
       />
       
+      {/* Light streaks */}
+      <div className="fixed top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-primary/30 to-transparent animate-[slide-in-right_3s_ease-in-out_infinite]" />
+      <div className="fixed top-20 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent/20 to-transparent animate-[slide-in-right_4s_ease-in-out_infinite]" style={{ animationDelay: "1s" }} />
+      
       {/* Main content */}
       <div className="relative z-10 container mx-auto px-6 pt-32 pb-20">
         {/* Hero Section */}
-        <header className="text-center mb-32 animate-slide-in-up">
+        <header className="text-center mb-32 animate-slide-in-up relative">
+          {/* Floating sparkle effects */}
+          <Sparkles className="absolute top-0 left-1/4 w-8 h-8 text-primary/30 animate-glow-pulse" style={{ animationDelay: "0s" }} />
+          <Sparkles className="absolute top-10 right-1/3 w-6 h-6 text-accent/40 animate-glow-pulse" style={{ animationDelay: "1s" }} />
+          <Sparkles className="absolute bottom-10 left-1/3 w-7 h-7 text-primary/20 animate-glow-pulse" style={{ animationDelay: "2s" }} />
+          
+          <div className="inline-block mb-8 glass-card px-4 py-2 rounded-full animate-scale-in">
+            <span className="text-sm text-primary font-medium">Trusted by 100+ Enterprise Clients</span>
+          </div>
+          
           <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-foreground mb-8 tracking-tight leading-none">
             Precision. Innovation.
-            <span className="block mt-3 bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">
+            <span className="block mt-3 bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent animate-glow-pulse">
               Open Solutions.
             </span>
           </h1>
@@ -75,15 +100,20 @@ const Index = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link to="/contact">
-              <Button size="lg" className="glass-card hover:glow-effect px-8 py-6 text-lg group">
-                Explore Services
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <Link to="/services/erp">
+              <Button size="lg" className="glass-card hover:glow-effect px-8 py-6 text-lg group relative overflow-hidden">
+                <span className="relative z-10 flex items-center">
+                  Explore Services
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500" />
               </Button>
             </Link>
             <Link to="/contact">
-              <Button size="lg" variant="outline" className="glass-card hover:glow-effect px-8 py-6 text-lg">
-                Talk to an Expert
+              <Button size="lg" variant="outline" className="glass-card hover:glow-effect px-8 py-6 text-lg group">
+                <span className="flex items-center">
+                  Talk to an Expert
+                </span>
               </Button>
             </Link>
           </div>
@@ -92,13 +122,14 @@ const Index = () => {
         {/* Services grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {services.map((service, index) => (
-            <ServiceCard
-              key={service.title}
-              icon={service.icon}
-              title={service.title}
-              description={service.description}
-              delay={index * 100}
-            />
+            <Link key={service.title} to={service.link}>
+              <ServiceCard
+                icon={service.icon}
+                title={service.title}
+                description={service.description}
+                delay={index * 100}
+              />
+            </Link>
           ))}
         </div>
 
