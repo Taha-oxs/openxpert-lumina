@@ -90,7 +90,7 @@ const Index = () => {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link to="/services/erp">
-              <Button size="lg" className="glass-card hover:glow-effect px-8 py-6 text-lg group relative overflow-hidden bg-accent">
+              <Button size="lg" className="glass-card hover:glow-effect px-8 py-6 text-lg group relative overflow-hidden bg-[#00375d]">
                 <span className="relative z-10 flex items-center">
                   Explore Services
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
